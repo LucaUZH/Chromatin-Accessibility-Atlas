@@ -377,3 +377,43 @@ seurat_object = readRDS(seurat_file_fetal)
 
 
 seurat_object
+
+################################################
+#Recalling peaks on merged objects
+################################################
+
+#Read merged object
+seurat_object = qread("complete/GSE149683_merged_.rds")
+
+#Call peaks for each cell type
+peaks <- CallPeaks(
+  object = seurat_object,
+  group.by = "cell.type"
+)
+
+#Get data form seurat object
+metadata <- seurat_object[[]]
+frags <- Fragments(seurat_object)
+
+#Make peak by cell matrix with new peaks
+peak_matrix <- FeatureMatrix(
+  fragments = frags,
+  features = peaks
+)
+
+#Convert to chromatin assay
+chrom_assay <- CreateChromatinAssay(
+  counts = peak_matrix,
+  sep = c(":", "-"),
+  fragments = frags
+)
+
+#Generate new seuruat object
+seurat_object <- CreateSeuratObject(
+  counts = chrom_assay,
+  assay = "peaks",
+  meta.data = metadata
+)
+
+#Save new seurat object
+qsave(seurat_object, "complete/Complete_dataset_.rds")

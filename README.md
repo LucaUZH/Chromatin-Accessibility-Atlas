@@ -16,6 +16,4 @@ R Directory:
   - 10_Formatting_and_Merging: BED files to initial Seurat files for analysis
   - 11_Complete_Analysis: Dimension reduction, Gen actitivty, CRE's, Motifs, TF
   - 12_Azimuth_Adipose_Tissue: Example for Azimuth on adipose datasets
-  - 
-Report
-  Contains the report and graphics used in report
+    

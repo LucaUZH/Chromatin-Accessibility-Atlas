@@ -261,14 +261,6 @@ ggtitle("Correct predictions")+
 geom_text(aes(label=total), vjust=1.6, color="black",
             position = position_dodge(0.9), size=3.5)
 
-ggplot(az_sub[[]], aes(cell.type))+
-geom_bar(aes(y = (..count..)/sum(..count..)))+
-theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-
-
-sort(unique(az$cell.type))
-
-sort(unique(az$predicted.celltype.l1))
 
 
 
